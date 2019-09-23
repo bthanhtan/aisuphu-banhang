@@ -1,5 +1,5 @@
-var local_link = "http://localhost/lamchohet/aisuphu-banhang/phailamhet/public/";
-// var local_link = "http://localhost/Laravel/Ai_template/aisuphu-banhang/phailamhet/public/";
+// var local_link = "http://localhost/lamchohet/aisuphu-banhang/phailamhet/public/";
+var local_link = "http://localhost/Laravel/Ai_template/aisuphu-banhang/phailamhet/public/";
 var so_hinh = 0;
 function shop_add_to_cart(id) {
     console.log(id);
@@ -16,35 +16,18 @@ function shop_add_to_cart(id) {
 }
 
 
-function function_name(argument) {
-    var data_file = this_input.files;
-    var token = $('meta[name="csrf-token"]').attr('content');
-    var form_data = new FormData();
-    form_data.append('_token', token);
-    $.each(data_file, function(index, value) {
-        form_data.append('file[]', value);
-    });
-    var content_img = "";
-    var status_img = "";
+function shop_remove_cart(rowid,thisButton) {
+
+    console.log('shop_remove_cart');
+    console.log(rowid);
+    console.log(thisButton);
     $.ajax({
-        url: local_link + "admin/product/uploadimage", 
+        url: local_link + "user/remove_cart/" + rowid, 
         dataType: 'json',
-        cache: false,
-        contentType: false,
-        processData: false,
-        data: form_data,
-        type: 'post',
+        type: 'get',
         success: function(response) {
-            var danhsach_images = response;
-            $.each(danhsach_images, function(index, value) {
-                content_img = '<div style="margin-bottom: 60px;" onclick="xoa_ajax_multi_Image(' + value + ')">';
-                content_img += '<img src="'+ local_link + value + '" width="200">';
-                content_img += '<input type="text" name="file[image]['+dem+'][src]" value="' + value + '"/>';
-                content_img += '</div>';
-                status_img += value + '<br>';
-                $('#them_img').append(content_img);
-                dem++;
-            });
+             if (response == 1) {$(thisButton).parents('.row_cart').remove();}
+             else {console.log('2')}
         }
     });
     return false;

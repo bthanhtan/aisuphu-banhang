@@ -32,7 +32,18 @@ Route::group(['prefix'=>'user','as'=>'user.'], function(){
     Route::get('/shop', 'UserController@shop')->name('user_shop');
     Route::get('/addtocart/{id}', 'UserController@addtocart')->name('user_addtocart');
     Route::get('/list_cart', 'UserController@list_cart')->name('user_list_cart');
+    Route::get('/edit_cart/{rowid}', 'UserController@dit_cart_cart')->name('user_edit_cart');
+    Route::get('/remove_cart/{rowid}', 'UserController@user_remove_cart')->name('user_remove_cart');
     Route::get('/single_shop/{id}', 'UserController@single_shop')->name('user_single_shop');
+    Route::get('/destroy_list_cart', 'UserController@destroy_list_cart')->name('user_destroy_list_cart');
+    Route::get('/order_list_cart', 'UserController@user_order_list_cart')->name('user_order_list_cart');
+
+    Route::get('/order', 'OrderController@index')->name('order_index');
+    Route::get('/order/create', 'OrderController@create')->name('order_create');
+    Route::post('/order/store', 'OrderController@store')->name('order_store');
+    Route::get('/order/edit/{id}', 'OrderController@edit')->name('order_edit');
+    Route::put('/order/update/{id}', 'OrderController@update')->name('order_update');
+    Route::delete('/order/delete/{id}', 'OrderController@destroy')->name('order_delete');
 });
 
 
@@ -69,12 +80,7 @@ Route::group(['prefix'=>'admin','as'=>'admin.'], function(){
     Route::put('/article/update/{id}', 'ArticleController@update')->name('article_update');
     Route::delete('/article/delete/{id}', 'ArticleController@destroy')->name('article_delete');
 
-    Route::get('/order', 'OrderController@index')->name('order_index');
-    Route::get('/order/create', 'OrderController@create')->name('order_create');
-    Route::post('/order/store', 'OrderController@store')->name('order_store');
-    Route::get('/order/edit/{id}', 'OrderController@edit')->name('order_edit');
-    Route::put('/order/update/{id}', 'OrderController@update')->name('order_update');
-    Route::delete('/order/delete/{id}', 'OrderController@destroy')->name('order_delete');
+    
 
 });
 

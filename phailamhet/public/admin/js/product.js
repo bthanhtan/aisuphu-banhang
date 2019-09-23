@@ -1,5 +1,5 @@
-var local_link = "http://localhost/lamchohet/aisuphu-banhang/phailamhet/public/";
-// var local_link = "http://localhost/Laravel/Ai_template/aisuphu-banhang/phailamhet/public/";
+// var local_link = "http://localhost/lamchohet/aisuphu-banhang/phailamhet/public/";
+var local_link = "http://localhost/Laravel/Ai_template/aisuphu-banhang/phailamhet/public/";
 var so_hinh = 0;
 function upload_Image_change(this_input, dem) {
     

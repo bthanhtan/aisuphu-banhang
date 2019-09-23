@@ -24,8 +24,8 @@
             <td>{{$product->status}}</td>
             <td>
               <?php 
-                $local_link = "http://localhost/lamchohet/aisuphu-banhang/phailamhet/public/";
-                // $local_link = "http://localhost/Laravel/Ai_template/aisuphu-banhang/phailamhet/public/";
+                // $local_link = "http://localhost/lamchohet/aisuphu-banhang/phailamhet/public/";
+                $local_link = "http://localhost/Laravel/Ai_template/aisuphu-banhang/phailamhet/public/";
                 $img_products = $product->images;
                 foreach($img_products as  $img_product){?>
                   <img src="{{$local_link}}{{$img_product->src}}" alt="">

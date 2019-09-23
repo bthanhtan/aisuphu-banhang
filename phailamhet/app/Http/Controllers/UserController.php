@@ -101,7 +101,8 @@ class UserController extends Controller
         Cart::add(['id' => $product->id, 'name' => $product->name, 'qty' => 1, 'price' => $product->price, 'weight' => 550, 'options' => ['image' => $product_image[0]->src]]);
         $a = Cart::count();
         $b = Cart::content();
-        return response()->json(['count' => $a,'content'=>$b]);
+        $c = Cart::weight();
+        return response()->json(['count' => $a,'content'=>$b,'weight'=>$c]);
         return response()->json($b);
         return response($a);
         return view('user.single_shop',['product' => $product]);
@@ -110,5 +111,34 @@ class UserController extends Controller
     {
         $carts = Cart::content();
         return view('user.list_cart',['carts' => $carts]);
+    }
+    public function user_edit_cart()
+    {
+        $carts = Cart::content();
+        return view('user.list_cart',['carts' => $carts]);
+    }
+    public function user_remove_cart($rowid)
+    {
+        Cart::remove($rowid);
+       return 1;
+        
+    }
+    public function destroy_list_cart()
+    {
+        dd('destroy_list_cart');
+        Cart::destroy();
+        return view('user.shop',['products' => $products]);
+    }
+    public function user_order_list_cart()
+    {
+        
+        dd('user_order_list_cart');
+        $rule= [
+            "user_id" => "required",
+        ];
+        $request->validate($rule);
+        $order = $request->all();
+        $order['status'] = 1;
+        Order::create($order);
     }
 }
