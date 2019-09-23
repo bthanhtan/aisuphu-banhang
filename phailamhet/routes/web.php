@@ -31,6 +31,7 @@ Route::get('/admin_page', function () {
 Route::group(['prefix'=>'user','as'=>'user.'], function(){
     Route::get('/shop', 'UserController@shop')->name('user_shop');
     Route::get('/addtocart/{id}', 'UserController@addtocart')->name('user_addtocart');
+    Route::get('/list_cart', 'UserController@list_cart')->name('user_list_cart');
     Route::get('/single_shop/{id}', 'UserController@single_shop')->name('user_single_shop');
 });
 

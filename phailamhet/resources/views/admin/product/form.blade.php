@@ -35,7 +35,8 @@
                 <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="discount_price" value="{{ old('discount_price', $product->discount_price ?? '') }}">
                 @if(isset($product->id))
                 <?php 
-                    $local_link = "http://localhost/Laravel/Ai_template/aisuphu-banhang/phailamhet/public/";
+                    $local_link = "http://localhost/lamchohet/aisuphu-banhang/phailamhet/public/";
+                    // $local_link = "http://localhost/Laravel/Ai_template/aisuphu-banhang/phailamhet/public/";
                     $img_products = $product->images; 
                 ?>
                 @foreach ($img_products as $key => $value)

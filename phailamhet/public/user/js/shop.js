@@ -1,4 +1,5 @@
-var local_link = "http://localhost/Laravel/Ai_template/aisuphu-banhang/phailamhet/public/";
+var local_link = "http://localhost/lamchohet/aisuphu-banhang/phailamhet/public/";
+// var local_link = "http://localhost/Laravel/Ai_template/aisuphu-banhang/phailamhet/public/";
 var so_hinh = 0;
 function shop_add_to_cart(id) {
     console.log(id);
@@ -7,7 +8,8 @@ function shop_add_to_cart(id) {
         dataType: 'json',
         type: 'get',
         success: function(response) {
-            
+            var countCart = response['count'];
+            $('#countCart').html(countCart);
         }
     });
     return false;

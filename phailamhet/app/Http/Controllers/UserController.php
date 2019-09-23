@@ -94,9 +94,21 @@ class UserController extends Controller
     }
     public function addtocart($id)
     {
+        // dd('123');
+        // Cart::destroy();
         $product = Product::find($id);
-        Cart::add(['id' => $product->id, 'name' => $product->name, 'qty' => 1, 'price' => $product->price, 'weight' => 550, 'options' => ['image' => $product->image]]);
-        dd(Cart::content());
+        $product_image = $product->images()->select()->get();
+        Cart::add(['id' => $product->id, 'name' => $product->name, 'qty' => 1, 'price' => $product->price, 'weight' => 550, 'options' => ['image' => $product_image[0]->src]]);
+        $a = Cart::count();
+        $b = Cart::content();
+        return response()->json(['count' => $a,'content'=>$b]);
+        return response()->json($b);
+        return response($a);
         return view('user.single_shop',['product' => $product]);
+    }
+    public function list_cart()
+    {
+        $carts = Cart::content();
+        return view('user.list_cart',['carts' => $carts]);
     }
 }

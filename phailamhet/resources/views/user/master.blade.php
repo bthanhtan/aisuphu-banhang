@@ -38,6 +38,9 @@
     <!--end pre-loader-->
 
     <!--start header-->
+    <?php 
+        $countCart = Cart::count(); 
+    ?>
     <header class="header">
         <div class="container">
             <div class="row">
@@ -80,6 +83,7 @@
                             <li><a href="shop.html">Shop</a></li>
                             <li><a href="blog.html">Journal</a></li>
                             <li><a href="contact.html">Connect</a></li>
+                            <li><a href="{{route('user.user_list_cart')}}">Cart[<span id="countCart">{{isset($countCart) ? $countCart : 0}}</span>]</a></li>
                         </ul>
                     </nav>
                     <div class="menu-mobile"></div>
