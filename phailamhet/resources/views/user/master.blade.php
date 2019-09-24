@@ -38,9 +38,7 @@
     <!--end pre-loader-->
 
     <!--start header-->
-    <?php 
-        $countCart = Cart::count(); 
-    ?>
+
     <header class="header">
         <div class="container">
             <div class="row">

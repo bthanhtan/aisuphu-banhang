@@ -17,6 +17,11 @@
 @stop
 
 @section('content')
+<?php 
+$link_login = 'http://localhost/Laravel/Ai_template/aisuphu-banhang/phailamhet/public/login';
+ ?>
+
+
 <section class="single-shop">
     <div class="container">
         <div class="row">
@@ -53,9 +58,17 @@
                                     <div class="dec qtybutton">-</div>
                                     <div class="inc qtybutton">+</div>
                                 </div>
-                                <p onclick="shop_add_to_cart({{$product->id}})" class="btn btn-add-to-cart pull-left">Add to cart</p>
-                            </div>
+                                <p onclick="
+                                <?php if (auth()->user() == null) {
+                                    echo "show_box_alert_cart()";
+                                }
+                                else  echo "shop_add_to_cart($product->id)"; ?>" class="btn btn-add-to-cart pull-left">Add to cart</p>
+                                <!-- shop_add_to_cart({{$product->id}}) -->
 
+                            </div>
+                            <div class="alert alert-danger box_alert_cart" style="display: none;">
+                                Bạn chưa đăng nhập để thực hiện chức năng thêm sản phẩm vào giỏ hàng, xin vui lòng <strong><a href="{{$link_login}}">đăng nhập.</a></strong>
+                            </div>
                             <div class="product-social">
                                 <span>Share</span>
 
@@ -179,4 +192,9 @@
 
 @section('javascript')
 <script src="{{ url('user/js/shop.js') }}"></script>
+<script>
+    function show_box_alert_cart() {
+        $('.box_alert_cart').css('display','block');
+    }
+</script>
 @stop
