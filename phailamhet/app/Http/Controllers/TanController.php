@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Validation\Validator;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
+use App\Category_product;
 use App\Product;
+use App\Image;
 use Cart;
-class UserController extends Controller
+class TanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -85,17 +89,16 @@ class UserController extends Controller
     public function shop()
     {
         $products = Product::select()->get();
-        return view('user.shop',['products' => $products]);
+        return view('tan.trangchu',['products' => $products]);
     }
-    public function single_shop($id)
+    public function chitiet($id)
     {
+        // dd('1');
         $product = Product::find($id);
-        return view('user.single_shop',['product' => $product]);
+        return view('tan.chitietsanpham',['product' => $product]);
     }
     public function addtocart($id)
     {
-        // dd('123');
-        // Cart::destroy();
         $product = Product::find($id);
         $product_image = $product->images()->select()->get();
         Cart::add(['id' => $product->id, 'name' => $product->name, 'qty' => 1, 'price' => $product->price, 'weight' => 550, 'options' => ['image' => $product_image[0]->src]]);
@@ -105,20 +108,19 @@ class UserController extends Controller
         return response()->json(['count' => $a,'content'=>$b,'weight'=>$c]);
         return response()->json($b);
         return response($a);
-        return view('user.single_shop',['product' => $product]);
+        return view('tan.single_shop',['product' => $product]);
     }
     public function list_cart()
     {
-       
         $carts = Cart::content();
-        return view('user.list_cart',['carts' => $carts]);
+        return view('tan.list_cart',['carts' => $carts]);
     }
-    public function user_edit_cart()
+    public function tan_edit_cart()
     {
         $carts = Cart::content();
-        return view('user.list_cart',['carts' => $carts]);
+        return view('tan.list_cart',['carts' => $carts]);
     }
-    public function user_remove_cart($rowid)
+    public function tan_remove_cart($rowid)
     {
         Cart::remove($rowid);
        return 1;
@@ -128,14 +130,14 @@ class UserController extends Controller
     {
         dd('destroy_list_cart');
         Cart::destroy();
-        return view('user.shop',['products' => $products]);
+        return view('tan.shop',['products' => $products]);
     }
-    public function user_order_list_cart()
+    public function tan_order_list_cart()
     {
         
-        dd('user_order_list_cart');
+        dd('tan_order_list_cart');
         $rule= [
-            "user_id" => "required",
+            "tan_id" => "required",
         ];
         $request->validate($rule);
         $order = $request->all();

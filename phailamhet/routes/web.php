@@ -15,6 +15,9 @@
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/masterlayout', function () {
+    return view('master');
+});
 
 Route::get('/khongphaiadmin', function () {
     return view('khongphaiadmin');
@@ -87,3 +90,8 @@ Route::group(['prefix'=>'admin','as'=>'admin.'], function(){
 
 
 
+Route::group(['prefix'=>'tan','as'=>'tan.'], function(){
+    Route::get('/shop', 'TanController@shop')->name('tan_shop');
+    Route::get('/chitiet/{id}', 'TanController@chitiet')->name('tan_chitiet');
+    Route::get('/list_cart', 'TanController@list_cart')->name('tan_list_cart');
+});
